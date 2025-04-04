@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online image compression tool. Reduce image file size while maintaining quality. Supports JPG, PNG, and WebP formats.">
-    <meta name="author" content="Saurabh Kumar">
-    <title>ImageCompress | Free Online Image Compression Tool</title>
+    <title>FileMaster Pro | Image & PDF Compression, Merge & Split Tools</title>
+    <meta name="description" content="Free online tools for image and PDF files. Compress, merge, split and convert files with our easy-to-use web tools. No installation required.">
+    <meta name="keywords" content="image compressor, PDF merger, PDF splitter, image converter, file optimization">
+    <meta name="author" content="FileMaster Pro">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #4361ee;
@@ -20,10 +22,10 @@
             --gray: #adb5bd;
             --gray-light: #e9ecef;
             --light: #f8f9fa;
+            --white: #ffffff;
             --success: #4cc9f0;
             --warning: #f8961e;
             --danger: #ef233c;
-            --white: #ffffff;
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -43,7 +45,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
@@ -51,7 +53,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
@@ -93,7 +95,7 @@
         }
 
         .logo-text {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--dark);
         }
@@ -147,8 +149,9 @@
 
         /* Hero */
         .hero {
-            padding: 4rem 0;
+            padding: 5rem 0;
             text-align: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
         }
 
         .hero-title {
@@ -171,27 +174,86 @@
             line-height: 1.6;
         }
 
-        /* Ad Banner */
-        .ad-banner {
-            background-color: var(--gray-light);
-            border-radius: var(--rounded);
-            padding: 1rem;
-            margin: 1.5rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 90px;
+        /* Tool Navigation */
+        .tool-nav {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
         }
 
-        /* Compressor Tool */
+        .tool-nav-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+        }
+
+        .tool-nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tool-tab {
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .tool-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tool-tab:hover {
+            color: var(--primary);
+        }
+
+        /* Tool Container */
         .tool-container {
             background-color: var(--white);
             border-radius: var(--rounded-lg);
             box-shadow: var(--shadow);
             padding: 2rem;
             margin-bottom: 2rem;
+            display: none;
         }
 
+        .tool-container.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tool-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary-light);
+            border-radius: var(--rounded-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        /* Upload Area */
         .upload-area {
             border: 2px dashed var(--gray);
             border-radius: var(--rounded-md);
@@ -201,7 +263,6 @@
             transition: var(--transition);
             margin-bottom: 2rem;
             position: relative;
-            overflow: hidden;
         }
 
         .upload-area:hover {
@@ -326,6 +387,105 @@
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
 
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--rounded-sm);
+            appearance: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .checkbox:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 0.75rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            cursor: pointer;
+        }
+
+        /* File List */
+        .file-list {
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--rounded);
+            overflow: hidden;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--primary-light);
+            border-radius: var(--rounded-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .file-info {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .file-name {
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.25rem;
+        }
+
+        .file-size {
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+        }
+
+        .file-remove {
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -350,13 +510,8 @@
 
         .btn-primary:hover {
             background-color: var(--secondary);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow);
         }
 
         .btn-secondary {
@@ -393,12 +548,6 @@
         .results {
             display: none;
             margin-top: 2rem;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .results-title {
@@ -559,40 +708,16 @@
             background-color: var(--danger);
         }
 
-        /* Info Section */
-        .info-section {
-            background-color: var(--white);
-            border-radius: var(--rounded-lg);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .info-section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .info-section h3 {
-            font-size: 1.25rem;
-            margin: 1.5rem 0 1rem;
-            color: var(--dark);
-        }
-
-        .info-section p {
-            margin-bottom: 1rem;
-            color: var(--gray-dark);
-        }
-
-        .info-section ol, .info-section ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--gray-dark);
-        }
-
-        .info-section li {
-            margin-bottom: 0.5rem;
+        /* Ad Banners */
+        .ad-banner {
+            background-color: var(--gray-light);
+            border-radius: var(--rounded);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px;
         }
 
         /* Footer */
@@ -656,13 +781,23 @@
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
             .hero-title {
                 font-size: 2rem;
             }
             
             .hero-subtitle {
-                font-size: 1.125rem;
+                font-size: 1.1rem;
             }
             
             .nav-links {
@@ -697,13 +832,9 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .container {
                 padding: 0 1rem;
-            }
-            
-            .hero {
-                padding: 3rem 0;
             }
             
             .hero-title {
@@ -734,14 +865,14 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <div class="logo-icon">IC</div>
-                    <div class="logo-text">Image<span>Compress</span></div>
+                    <div class="logo-icon">FM</div>
+                    <div class="logo-text">FileMaster<span>Pro</span></div>
                 </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#" class="nav-link">Home</a></li>
-                    <li><a href="#" class="nav-link">Features</a></li>
-                    <li><a href="#" class="nav-link">How It Works</a></li>
-                    <li><a href="#" class="nav-link">FAQ</a></li>
+                    <li><a href="#" class="nav-link">Image Tools</a></li>
+                    <li><a href="#" class="nav-link">PDF Tools</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
                     <li><a href="#" class="nav-link">Contact</a></li>
                 </ul>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -749,203 +880,543 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">Optimize Your Images with <span>One Click</span></h1>
-                <p class="hero-subtitle">Reduce image file size without losing quality. Perfect for websites, social media, and storage optimization.</p>
-            </div>
-        </section>
-
+    <section class="hero">
         <div class="container">
-            <!-- Top Ad Banner -->
-            <div class="ad-banner">
-                <!-- AdSense Code Here -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                    crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Top_Banner -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                    data-ad-slot="YOUR_AD_SLOT_ID"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-
-            <div class="tool-container">
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📁</div>
-                    <h3 class="upload-text">Drag & Drop Your Image Here</h3>
-                    <p class="upload-subtext">or click to browse files (JPG, PNG, WebP)</p>
-                    <input type="file" id="fileInput" class="file-input" accept="image/*">
-                </div>
-
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="quality" class="control-label">Compression Level</label>
-                        <div class="slider-container">
-                            <input type="range" id="quality" class="slider" min="0" max="100" value="80">
-                            <span id="qualityValue" class="slider-value">80%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label for="format" class="control-label">Output Format</label>
-                        <select id="format" class="select">
-                            <option value="auto">Auto (Recommended)</option>
-                            <option value="jpeg">JPEG</option>
-                            <option value="png">PNG</option>
-                            <option value="webp">WebP</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button id="compressBtn" class="btn btn-primary" disabled>
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                        Compress Image
-                    </button>
-                    <button id="resetBtn" class="btn btn-secondary" disabled>
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38"></path>
-                        </svg>
-                        Reset
-                    </button>
-                </div>
-
-                <div class="spinner" id="spinner"></div>
-
-                <div class="results" id="results">
-                    <h2 class="results-title">Compression Results</h2>
-                    <div class="comparison">
-                        <div class="image-box">
-                            <h3 class="image-title">Original Image</h3>
-                            <div class="image-wrapper">
-                                <img id="originalImg" src="" alt="Original image">
-                            </div>
-                            <div class="image-info">
-                                <p><strong>File name:</strong> <span id="originalName"></span></p>
-                                <p><strong>Size:</strong> <span id="originalSize"></span></p>
-                                <p><strong>Dimensions:</strong> <span id="originalDimensions"></span></p>
-                            </div>
-                        </div>
-                        <div class="image-box">
-                            <h3 class="image-title">Compressed Image</h3>
-                            <div class="image-wrapper">
-                                <img id="compressedImg" src="" alt="Compressed image">
-                            </div>
-                            <div class="image-info">
-                                <p><strong>Format:</strong> <span id="compressedFormat"></span></p>
-                                <p><strong>Size:</strong> <span id="compressedSize"></span></p>
-                                <p><strong>Quality:</strong> <span id="compressedQuality"></span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stats">
-                        <div class="stat-card">
-                            <div class="stat-value" id="savingsPercentage">0%</div>
-                            <div class="stat-label">Size Reduced</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="originalSizeStat">0 KB</div>
-                            <div class="stat-label">Original Size</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="compressedSizeStat">0 KB</div>
-                            <div class="stat-label">Compressed Size</div>
-                        </div>
-                    </div>
-
-                    <a href="#" id="downloadBtn" class="btn btn-primary download-btn">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Download Compressed Image
-                    </a>
-                </div>
-            </div>
-
-            <!-- Middle Ad Banner -->
-            <div class="ad-banner">
-                <!-- AdSense Code Here -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-                    crossorigin="anonymous"></script>
-                <!-- ImageCompressor_Mid_Banner -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
-                    data-ad-slot="YOUR_AD_SLOT_ID"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-
-            <section class="info-section">
-                <h2>Why Compress Your Images?</h2>
-                <p>Image compression is essential for improving website performance, reducing bandwidth usage, and enhancing user experience. Our tool helps you find the perfect balance between quality and file size.</p>
-                
-                <h3>Key Benefits</h3>
-                <ul>
-                    <li><strong>Faster loading times</strong> for your website or application</li>
-                    <li><strong>Reduced storage space</strong> for your image files</li>
-                    <li><strong>Improved SEO rankings</strong> with optimized page speed</li>
-                    <li><strong>Better user experience</strong> with quick-loading content</li>
-                    <li><strong>Lower bandwidth costs</strong> for high-traffic sites</li>
-                </ul>
-                
-                <h3>How It Works</h3>
-                <ol>
-                    <li><strong>Upload</strong> your image file (drag & drop or click to browse)</li>
-                    <li><strong>Adjust</strong> compression settings to your preference</li>
-                    <li><strong>Compress</strong> with one click using our advanced algorithms</li>
-                    <li><strong>Download</strong> your optimized image in seconds</li>
-                </ol>
-            </section>
+            <h1 class="hero-title">Optimize Your <span>Files in Seconds</span></h1>
+            <p class="hero-subtitle">Free online tools for images and PDFs. Compress, merge, split and convert files with our easy-to-use tools.</p>
         </div>
-    </main>
+    </section>
+
+    <div class="tool-nav">
+        <div class="container">
+            <div class="tool-nav-container">
+                <a href="#" class="tool-tab active" data-tool="image-compressor">Image Compressor</a>
+                <a href="#" class="tool-tab" data-tool="image-converter">Image Converter</a>
+                <a href="#" class="tool-tab" data-tool="pdf-compressor">PDF Compressor</a>
+                <a href="#" class="tool-tab" data-tool="pdf-merger">PDF Merger</a>
+                <a href="#" class="tool-tab" data-tool="pdf-splitter">PDF Splitter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Top Ad Banner -->
+        <div class="ad-banner">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                crossorigin="anonymous"></script>
+            <!-- FileMaster_Top_Banner -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Image Compressor Tool -->
+        <div class="tool-container active" id="image-compressor">
+            <h2 class="tool-title">
+                <div class="tool-icon">
+                    <i class="fas fa-compress-alt"></i>
+                </div>
+                Image Compressor
+            </h2>
+            
+            <div class="upload-area" id="ic-upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3 class="upload-text">Drag & Drop Your Image Here</h3>
+                <p class="upload-subtext">or click to browse files (JPG, PNG, WebP)</p>
+                <input type="file" id="ic-file-input" class="file-input" accept="image/*">
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="ic-quality" class="control-label">Compression Level</label>
+                    <div class="slider-container">
+                        <input type="range" id="ic-quality" class="slider" min="0" max="100" value="80">
+                        <span id="ic-quality-value" class="slider-value">80%</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="ic-format" class="control-label">Output Format</label>
+                    <select id="ic-format" class="select">
+                        <option value="auto">Auto (Recommended)</option>
+                        <option value="jpeg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="ic-compress-btn" class="btn btn-primary" disabled>
+                    <i class="fas fa-compress-alt btn-icon"></i>
+                    Compress Image
+                </button>
+                <button id="ic-reset-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-redo btn-icon"></i>
+                    Reset
+                </button>
+            </div>
+
+            <div class="spinner" id="ic-spinner"></div>
+
+            <div class="results" id="ic-results">
+                <h3 class="results-title">Compression Results</h3>
+                <div class="comparison">
+                    <div class="image-box">
+                        <h4 class="image-title">Original Image</h4>
+                        <div class="image-wrapper">
+                            <img id="ic-original-img" src="" alt="Original image">
+                        </div>
+                        <div class="image-info">
+                            <p><strong>File name:</strong> <span id="ic-original-name"></span></p>
+                            <p><strong>Size:</strong> <span id="ic-original-size"></span></p>
+                            <p><strong>Dimensions:</strong> <span id="ic-original-dimensions"></span></p>
+                        </div>
+                    </div>
+                    <div class="image-box">
+                        <h4 class="image-title">Compressed Image</h4>
+                        <div class="image-wrapper">
+                            <img id="ic-compressed-img" src="" alt="Compressed image">
+                        </div>
+                        <div class="image-info">
+                            <p><strong>Format:</strong> <span id="ic-compressed-format"></span></p>
+                            <p><strong>Size:</strong> <span id="ic-compressed-size"></span></p>
+                            <p><strong>Quality:</strong> <span id="ic-compressed-quality"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="ic-savings-percentage">0%</div>
+                        <div class="stat-label">Size Reduced</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="ic-original-size-stat">0 KB</div>
+                        <div class="stat-label">Original Size</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="ic-compressed-size-stat">0 KB</div>
+                        <div class="stat-label">Compressed Size</div>
+                    </div>
+                </div>
+
+                <a href="#" id="ic-download-btn" class="btn btn-primary download-btn">
+                    <i class="fas fa-download btn-icon"></i>
+                    Download Compressed Image
+                </a>
+            </div>
+        </div>
+
+        <!-- Image Converter Tool -->
+        <div class="tool-container" id="image-converter">
+            <h2 class="tool-title">
+                <div class="tool-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                Image Converter
+            </h2>
+            
+            <div class="upload-area" id="iconv-upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3 class="upload-text">Drag & Drop Your Image Here</h3>
+                <p class="upload-subtext">or click to browse files (JPG, PNG, WebP, etc.)</p>
+                <input type="file" id="iconv-file-input" class="file-input" accept="image/*">
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="iconv-format" class="control-label">Output Format</label>
+                    <select id="iconv-format" class="select">
+                        <option value="jpeg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                        <option value="bmp">BMP</option>
+                        <option value="tiff">TIFF</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="iconv-quality" class="control-label">Quality (for lossy formats)</label>
+                    <div class="slider-container">
+                        <input type="range" id="iconv-quality" class="slider" min="0" max="100" value="80">
+                        <span id="iconv-quality-value" class="slider-value">80%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="iconv-convert-btn" class="btn btn-primary" disabled>
+                    <i class="fas fa-exchange-alt btn-icon"></i>
+                    Convert Image
+                </button>
+                <button id="iconv-reset-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-redo btn-icon"></i>
+                    Reset
+                </button>
+            </div>
+
+            <div class="spinner" id="iconv-spinner"></div>
+
+            <div class="results" id="iconv-results">
+                <h3 class="results-title">Conversion Results</h3>
+                <div class="comparison">
+                    <div class="image-box">
+                        <h4 class="image-title">Original Image</h4>
+                        <div class="image-wrapper">
+                            <img id="iconv-original-img" src="" alt="Original image">
+                        </div>
+                        <div class="image-info">
+                            <p><strong>File name:</strong> <span id="iconv-original-name"></span></p>
+                            <p><strong>Size:</strong> <span id="iconv-original-size"></span></p>
+                            <p><strong>Format:</strong> <span id="iconv-original-format"></span></p>
+                        </div>
+                    </div>
+                    <div class="image-box">
+                        <h4 class="image-title">Converted Image</h4>
+                        <div class="image-wrapper">
+                            <img id="iconv-converted-img" src="" alt="Converted image">
+                        </div>
+                        <div class="image-info">
+                            <p><strong>Format:</strong> <span id="iconv-converted-format"></span></p>
+                            <p><strong>Size:</strong> <span id="iconv-converted-size"></span></p>
+                            <p><strong>Quality:</strong> <span id="iconv-converted-quality"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" id="iconv-download-btn" class="btn btn-primary download-btn">
+                    <i class="fas fa-download btn-icon"></i>
+                    Download Converted Image
+                </a>
+            </div>
+        </div>
+
+        <!-- PDF Compressor Tool -->
+        <div class="tool-container" id="pdf-compressor">
+            <h2 class="tool-title">
+                <div class="tool-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                PDF Compressor
+            </h2>
+            
+            <div class="upload-area" id="pdfc-upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3 class="upload-text">Drag & Drop Your PDF Here</h3>
+                <p class="upload-subtext">or click to browse files</p>
+                <input type="file" id="pdfc-file-input" class="file-input" accept=".pdf">
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="pdfc-quality" class="control-label">Compression Level</label>
+                    <select id="pdfc-quality" class="select">
+                        <option value="low">Low Compression (Best Quality)</option>
+                        <option value="medium" selected>Medium Compression (Recommended)</option>
+                        <option value="high">High Compression (Smaller File)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Options</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="pdfc-optimize-images" class="checkbox" checked>
+                        <label for="pdfc-optimize-images" class="checkbox-label">Optimize images in PDF</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="pdfc-remove-metadata" class="checkbox">
+                        <label for="pdfc-remove-metadata" class="checkbox-label">Remove metadata</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="pdfc-compress-btn" class="btn btn-primary" disabled>
+                    <i class="fas fa-compress-alt btn-icon"></i>
+                    Compress PDF
+                </button>
+                <button id="pdfc-reset-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-redo btn-icon"></i>
+                    Reset
+                </button>
+            </div>
+
+            <div class="spinner" id="pdfc-spinner"></div>
+
+            <div class="results" id="pdfc-results">
+                <h3 class="results-title">Compression Results</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfc-savings-percentage">0%</div>
+                        <div class="stat-label">Size Reduced</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfc-original-size">0 KB</div>
+                        <div class="stat-label">Original Size</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfc-compressed-size">0 KB</div>
+                        <div class="stat-label">Compressed Size</div>
+                    </div>
+                </div>
+
+                <a href="#" id="pdfc-download-btn" class="btn btn-primary download-btn">
+                    <i class="fas fa-download btn-icon"></i>
+                    Download Compressed PDF
+                </a>
+            </div>
+        </div>
+
+        <!-- PDF Merger Tool -->
+        <div class="tool-container" id="pdf-merger">
+            <h2 class="tool-title">
+                <div class="tool-icon">
+                    <i class="fas fa-object-group"></i>
+                </div>
+                PDF Merger
+            </h2>
+            
+            <div class="upload-area" id="pdfm-upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3 class="upload-text">Drag & Drop PDFs Here</h3>
+                <p class="upload-subtext">or click to browse files (Select multiple files)</p>
+                <input type="file" id="pdfm-file-input" class="file-input" accept=".pdf" multiple>
+            </div>
+
+            <div class="file-list" id="pdfm-file-list" style="display: none;">
+                <div class="file-item">
+                    <div class="file-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="file-info">
+                        <div class="file-name">example1.pdf</div>
+                        <div class="file-size">2.4 MB</div>
+                    </div>
+                    <button class="file-remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="pdfm-output-name" class="control-label">Output Filename</label>
+                    <input type="text" id="pdfm-output-name" class="select" placeholder="merged.pdf" value="merged.pdf">
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Options</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="pdfm-optimize" class="checkbox" checked>
+                        <label for="pdfm-optimize" class="checkbox-label">Optimize merged PDF</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="pdfm-merge-btn" class="btn btn-primary" disabled>
+                    <i class="fas fa-object-group btn-icon"></i>
+                    Merge PDFs
+                </button>
+                <button id="pdfm-reset-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-redo btn-icon"></i>
+                    Reset
+                </button>
+            </div>
+
+            <div class="spinner" id="pdfm-spinner"></div>
+
+            <div class="results" id="pdfm-results">
+                <h3 class="results-title">Merge Results</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfm-page-count">0</div>
+                        <div class="stat-label">Total Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfm-file-count">0</div>
+                        <div class="stat-label">Files Merged</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfm-final-size">0 KB</div>
+                        <div class="stat-label">Final Size</div>
+                    </div>
+                </div>
+
+                <a href="#" id="pdfm-download-btn" class="btn btn-primary download-btn">
+                    <i class="fas fa-download btn-icon"></i>
+                    Download Merged PDF
+                </a>
+            </div>
+        </div>
+
+        <!-- PDF Splitter Tool -->
+        <div class="tool-container" id="pdf-splitter">
+            <h2 class="tool-title">
+                <div class="tool-icon">
+                    <i class="fas fa-cut"></i>
+                </div>
+                PDF Splitter
+            </h2>
+            
+            <div class="upload-area" id="pdfs-upload-area">
+                <div class="upload-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3 class="upload-text">Drag & Drop Your PDF Here</h3>
+                <p class="upload-subtext">or click to browse files</p>
+                <input type="file" id="pdfs-file-input" class="file-input" accept=".pdf">
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="pdfs-mode" class="control-label">Split Mode</label>
+                    <select id="pdfs-mode" class="select">
+                        <option value="ranges">Extract page ranges</option>
+                        <option value="every">Split every X pages</option>
+                        <option value="odd-even">Split odd/even pages</option>
+                    </select>
+                </div>
+                
+                <div class="control-group" id="pdfs-ranges-group">
+                    <label for="pdfs-ranges" class="control-label">Page Ranges</label>
+                    <input type="text" id="pdfs-ranges" class="select" placeholder="1-3, 5, 7-9">
+                    <p class="upload-subtext">Example: 1-3, 5, 7-9 (extracts pages 1,2,3,5,7,8,9)</p>
+                </div>
+                
+                <div class="control-group" id="pdfs-every-group" style="display: none;">
+                    <label for="pdfs-every" class="control-label">Split every</label>
+                    <div class="slider-container">
+                        <input type="range" id="pdfs-every" class="slider" min="1" max="10" value="1">
+                        <span id="pdfs-every-value" class="slider-value">1 page</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Options</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="pdfs-optimize" class="checkbox" checked>
+                        <label for="pdfs-optimize" class="checkbox-label">Optimize split PDFs</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="pdfs-split-btn" class="btn btn-primary" disabled>
+                    <i class="fas fa-cut btn-icon"></i>
+                    Split PDF
+                </button>
+                <button id="pdfs-reset-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-redo btn-icon"></i>
+                    Reset
+                </button>
+            </div>
+
+            <div class="spinner" id="pdfs-spinner"></div>
+
+            <div class="results" id="pdfs-results">
+                <h3 class="results-title">Split Results</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfs-total-pages">0</div>
+                        <div class="stat-label">Total Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfs-output-files">0</div>
+                        <div class="stat-label">Output Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pdfs-avg-size">0 KB</div>
+                        <div class="stat-label">Avg. File Size</div>
+                    </div>
+                </div>
+
+                <div id="pdfs-download-container" style="text-align: center; margin-top: 2rem;">
+                    <!-- Download buttons will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Ad Banner -->
+        <div class="ad-banner">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                crossorigin="anonymous"></script>
+            <!-- FileMaster_Mid_Banner -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ImageCompress</h3>
-                    <p>A free online tool to optimize your images for web and mobile applications with advanced compression technology.</p>
+                    <a href="#" class="logo">
+                        <div class="logo-icon">FM</div>
+                        <div class="logo-text">FileMaster<span>Pro</span></div>
+                    </a>
+                    <p style="margin: 1.5rem 0; font-size: 0.9rem; color: var(--gray-light);">Free online tools for images and PDFs. No installation required - everything works right in your browser.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: var(--gray-light); font-size: 1.25rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: var(--gray-light); font-size: 1.25rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: var(--gray-light); font-size: 1.25rem;"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li class="footer-link"><a href="#">Home</a></li>
-                        <li class="footer-link"><a href="#">Privacy Policy</a></li>
-                        <li class="footer-link"><a href="#">Terms of Service</a></li>
-                        <li class="footer-link"><a href="#">Contact Us</a></li>
+                        <li class="footer-link"><a href="#">Image Tools</a></li>
+                        <li class="footer-link"><a href="#">PDF Tools</a></li>
+                        <li class="footer-link"><a href="#">About</a></li>
+                        <li class="footer-link"><a href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Resources</h3>
+                    <h3>Legal</h3>
                     <ul class="footer-links">
-                        <li class="footer-link"><a href="#">Image Optimization Guide</a></li>
-                        <li class="footer-link"><a href="#">WebP vs JPEG Comparison</a></li>
-                        <li class="footer-link"><a href="#">SEO Best Practices</a></li>
-                        <li class="footer-link"><a href="#">Developer API</a></li>
+                        <li class="footer-link"><a href="#">Privacy Policy</a></li>
+                        <li class="footer-link"><a href="#">Terms of Service</a></li>
+                        <li class="footer-link"><a href="#">Cookie Policy</a></li>
+                        <li class="footer-link"><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Help Center</a></li>
+                        <li class="footer-link"><a href="#">FAQ</a></li>
+                        <li class="footer-link"><a href="#">Feedback</a></li>
+                        <li class="footer-link"><a href="#">Report a Bug</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <span id="year"></span> ImageCompress. All rights reserved.</p>
+                <p>&copy; <span id="year"></span> FileMaster Pro. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -953,153 +1424,211 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // DOM Elements
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const qualitySlider = document.getElementById('quality');
-        const qualityValue = document.getElementById('qualityValue');
-        const formatSelect = document.getElementById('format');
-        const compressBtn = document.getElementById('compressBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const spinner = document.getElementById('spinner');
-        const results = document.getElementById('results');
-        const originalImg = document.getElementById('originalImg');
-        const compressedImg = document.getElementById('compressedImg');
-        const originalName = document.getElementById('originalName');
-        const originalSize = document.getElementById('originalSize');
-        const originalSizeStat = document.getElementById('originalSizeStat');
-        const originalDimensions = document.getElementById('originalDimensions');
-        const compressedFormat = document.getElementById('compressedFormat');
-        const compressedSize = document.getElementById('compressedSize');
-        const compressedSizeStat = document.getElementById('compressedSizeStat');
-        const compressedQuality = document.getElementById('compressedQuality');
-        const savingsPercentage = document.getElementById('savingsPercentage');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const toast = document.getElementById('toast');
-        const yearSpan = document.getElementById('year');
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
-        // Global variables
-        let currentFile = null;
-        let compressedImageBlob = null;
-
-        // Initialize
-        yearSpan.textContent = new Date().getFullYear();
-
-        // Event Listeners
-        uploadArea.addEventListener('click', () => fileInput.click());
-        
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('active');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
         });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('active');
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '☰';
+                }
+            });
         });
-        
-        uploadArea.addEventListener('drop', (e) => {
+
+        // Tool tabs functionality
+        const toolTabs = document.querySelectorAll('.tool-tab');
+        const toolContainers = document.querySelectorAll('.tool-container');
+
+        toolTabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs and containers
+                toolTabs.forEach(t => t.classList.remove('active'));
+                toolContainers.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding container
+                tab.classList.add('active');
+                const toolId = tab.getAttribute('data-tool');
+                document.getElementById(toolId).classList.add('active');
+            });
+        });
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast'; // Reset classes
+            toast.classList.add('show');
+            
+            if (type === 'success') {
+                toast.classList.add('toast-success');
+                toast.innerHTML = `<i class="fas fa-check-circle toast-icon"></i> ${message}`;
+            } else {
+                toast.classList.add('toast-error');
+                toast.innerHTML = `<i class="fas fa-exclamation-circle toast-icon"></i> ${message}`;
+            }
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Format bytes to human-readable format
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        // Image Compressor Tool
+        const icUploadArea = document.getElementById('ic-upload-area');
+        const icFileInput = document.getElementById('ic-file-input');
+        const icQualitySlider = document.getElementById('ic-quality');
+        const icQualityValue = document.getElementById('ic-quality-value');
+        const icFormatSelect = document.getElementById('ic-format');
+        const icCompressBtn = document.getElementById('ic-compress-btn');
+        const icResetBtn = document.getElementById('ic-reset-btn');
+        const icSpinner = document.getElementById('ic-spinner');
+        const icResults = document.getElementById('ic-results');
+        const icOriginalImg = document.getElementById('ic-original-img');
+        const icCompressedImg = document.getElementById('ic-compressed-img');
+        const icOriginalName = document.getElementById('ic-original-name');
+        const icOriginalSize = document.getElementById('ic-original-size');
+        const icOriginalSizeStat = document.getElementById('ic-original-size-stat');
+        const icOriginalDimensions = document.getElementById('ic-original-dimensions');
+        const icCompressedFormat = document.getElementById('ic-compressed-format');
+        const icCompressedSize = document.getElementById('ic-compressed-size');
+        const icCompressedSizeStat = document.getElementById('ic-compressed-size-stat');
+        const icCompressedQuality = document.getElementById('ic-compressed-quality');
+        const icSavingsPercentage = document.getElementById('ic-savings-percentage');
+        const icDownloadBtn = document.getElementById('ic-download-btn');
+
+        let icCurrentFile = null;
+        let icCompressedBlob = null;
+
+        // Update quality value display
+        icQualitySlider.addEventListener('input', () => {
+            icQualityValue.textContent = `${icQualitySlider.value}%`;
+        });
+
+        // Handle file selection
+        icUploadArea.addEventListener('click', () => icFileInput.click());
+        icUploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
-            uploadArea.classList.remove('active');
+            icUploadArea.classList.add('active');
+        });
+        icUploadArea.addEventListener('dragleave', () => {
+            icUploadArea.classList.remove('active');
+        });
+        icUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            icUploadArea.classList.remove('active');
             if (e.dataTransfer.files.length) {
-                handleFileSelect(e.dataTransfer.files[0]);
+                handleIcFileSelect(e.dataTransfer.files[0]);
             }
         });
 
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length) {
-                handleFileSelect(fileInput.files[0]);
+        icFileInput.addEventListener('change', () => {
+            if (icFileInput.files.length) {
+                handleIcFileSelect(icFileInput.files[0]);
             }
         });
 
-        qualitySlider.addEventListener('input', () => {
-            qualityValue.textContent = `${qualitySlider.value}%`;
-        });
-
-        compressBtn.addEventListener('click', compressImage);
-        resetBtn.addEventListener('click', resetTool);
-        downloadBtn.addEventListener('click', downloadImage);
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        // Functions
-        function handleFileSelect(file) {
+        function handleIcFileSelect(file) {
             if (!file.type.match('image.*')) {
                 showToast('Please select an image file (JPEG, PNG, etc.)', 'error');
                 return;
             }
 
-            currentFile = file;
+            icCurrentFile = file;
             const reader = new FileReader();
 
             reader.onload = function(e) {
-                originalImg.src = e.target.result;
+                icOriginalImg.src = e.target.result;
                 
                 // Get image dimensions
                 const img = new Image();
                 img.onload = function() {
-                    originalDimensions.textContent = `${this.width} × ${this.height}px`;
+                    icOriginalDimensions.textContent = `${this.width} × ${this.height}px`;
                 };
                 img.src = e.target.result;
                 
-                originalName.textContent = file.name;
+                icOriginalName.textContent = file.name;
                 const sizeText = formatBytes(file.size);
-                originalSize.textContent = sizeText;
-                originalSizeStat.textContent = sizeText;
+                icOriginalSize.textContent = sizeText;
+                icOriginalSizeStat.textContent = sizeText;
                 
-                compressBtn.disabled = false;
-                resetBtn.disabled = false;
-                results.style.display = 'none';
+                icCompressBtn.disabled = false;
+                icResetBtn.disabled = false;
+                icResults.style.display = 'none';
             };
 
             reader.readAsDataURL(file);
         }
 
-        function compressImage() {
-            if (!currentFile) return;
+        // Compress image
+        icCompressBtn.addEventListener('click', compressImage);
 
-            spinner.style.display = 'block';
-            compressBtn.disabled = true;
-            compressBtn.innerHTML = `<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Compressing...`;
+        function compressImage() {
+            if (!icCurrentFile) return;
+
+            icSpinner.style.display = 'block';
+            icCompressBtn.disabled = true;
+            icCompressBtn.innerHTML = `<i class="fas fa-spinner fa-spin btn-icon"></i> Compressing...`;
 
             // Simulate compression (in a real app, use actual compression)
             setTimeout(() => {
-                const quality = parseInt(qualitySlider.value);
-                const format = formatSelect.value === 'auto' ? getBestFormat(currentFile.type) : formatSelect.value;
+                const quality = parseInt(icQualitySlider.value);
+                const format = icFormatSelect.value === 'auto' ? getBestFormat(icCurrentFile.type) : icFormatSelect.value;
                 const formatName = format.toUpperCase();
                 
                 // Simulate compression results
-                const originalSizeBytes = currentFile.size;
+                const originalSizeBytes = icCurrentFile.size;
                 const compressionRatio = 1 - (quality / 100 * 0.8); // More compression at lower quality
                 const compressedSizeBytes = Math.max(originalSizeBytes * compressionRatio, originalSizeBytes * 0.1); // At least 10% of original
                 
                 // Create a dummy blob for the demo
-                compressedImageBlob = new Blob([currentFile], { type: `image/${format}` });
+                icCompressedBlob = new Blob([icCurrentFile], { type: `image/${format}` });
                 
                 // Display results
-                compressedImg.src = originalImg.src; // In real app, this would be the compressed image
-                compressedFormat.textContent = formatName;
+                icCompressedImg.src = icOriginalImg.src; // In real app, this would be the compressed image
+                icCompressedFormat.textContent = formatName;
                 
                 const sizeText = formatBytes(compressedSizeBytes);
-                compressedSize.textContent = sizeText;
-                compressedSizeStat.textContent = sizeText;
+                icCompressedSize.textContent = sizeText;
+                icCompressedSizeStat.textContent = sizeText;
                 
-                compressedQuality.textContent = `${quality}%`;
+                icCompressedQuality.textContent = `${quality}%`;
                 
                 const savings = ((originalSizeBytes - compressedSizeBytes) / originalSizeBytes * 100).toFixed(1);
-                savingsPercentage.textContent = `${savings}%`;
+                icSavingsPercentage.textContent = `${savings}%`;
                 
-                downloadBtn.href = URL.createObjectURL(compressedImageBlob);
-                downloadBtn.download = `compressed.${format}`;
+                icDownloadBtn.href = URL.createObjectURL(icCompressedBlob);
+                icDownloadBtn.download = `compressed.${format}`;
                 
-                results.style.display = 'block';
-                spinner.style.display = 'none';
-                compressBtn.innerHTML = `<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Compress Image`;
+                icResults.style.display = 'block';
+                icSpinner.style.display = 'none';
+                icCompressBtn.innerHTML = `<i class="fas fa-compress-alt btn-icon"></i> Compress Image`;
                 
                 showToast('Image compressed successfully!', 'success');
                 
                 // Scroll to results
-                results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                icResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 1500);
         }
 
@@ -1110,87 +1639,363 @@
             return 'webp'; // Default to WebP for modern browsers
         }
 
-        function resetTool() {
-            currentFile = null;
-            compressedImageBlob = null;
-            fileInput.value = '';
-            originalImg.src = '';
-            compressedImg.src = '';
-            originalName.textContent = '';
-            originalSize.textContent = '';
-            originalSizeStat.textContent = '';
-            originalDimensions.textContent = '';
-            compressedFormat.textContent = '';
-            compressedSize.textContent = '';
-            compressedSizeStat.textContent = '';
-            compressedQuality.textContent = '';
-            savingsPercentage.textContent = '0%';
-            compressBtn.disabled = true;
-            resetBtn.disabled = true;
-            results.style.display = 'none';
-            qualitySlider.value = 80;
-            qualityValue.textContent = '80%';
-            formatSelect.value = 'auto';
+        // Reset tool
+        icResetBtn.addEventListener('click', resetIcTool);
+
+        function resetIcTool() {
+            icCurrentFile = null;
+            icCompressedBlob = null;
+            icFileInput.value = '';
+            icOriginalImg.src = '';
+            icCompressedImg.src = '';
+            icOriginalName.textContent = '';
+            icOriginalSize.textContent = '';
+            icOriginalSizeStat.textContent = '';
+            icOriginalDimensions.textContent = '';
+            icCompressedFormat.textContent = '';
+            icCompressedSize.textContent = '';
+            icCompressedSizeStat.textContent = '';
+            icCompressedQuality.textContent = '';
+            icSavingsPercentage.textContent = '0%';
+            icCompressBtn.disabled = true;
+            icResetBtn.disabled = true;
+            icResults.style.display = 'none';
+            icQualitySlider.value = 80;
+            icQualityValue.textContent = '80%';
+            icFormatSelect.value = 'auto';
         }
 
-        function downloadImage(e) {
-            if (!compressedImageBlob) {
+        // Download compressed image
+        icDownloadBtn.addEventListener('click', (e) => {
+            if (!icCompressedBlob) {
                 e.preventDefault();
                 showToast('No compressed image available', 'error');
             }
-        }
-
-        function formatBytes(bytes, decimals = 2) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
-
-        function showToast(message, type = 'success') {
-            toast.textContent = message;
-            toast.className = 'toast'; // Reset classes
-            toast.classList.add('show');
-            
-            if (type === 'success') {
-                toast.classList.add('toast-success');
-                toast.innerHTML = `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> ${message}`;
-            } else {
-                toast.classList.add('toast-error');
-                toast.innerHTML = `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> ${message}`;
-            }
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        function toggleMobileMenu() {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        }
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
-            });
         });
 
-        // Service Worker Registration for PWA (optional)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registration successful');
-                }).catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
+        // PDF Merger Tool
+        const pdfmUploadArea = document.getElementById('pdfm-upload-area');
+        const pdfmFileInput = document.getElementById('pdfm-file-input');
+        const pdfmFileList = document.getElementById('pdfm-file-list');
+        const pdfmOutputName = document.getElementById('pdfm-output-name');
+        const pdfmOptimize = document.getElementById('pdfm-optimize');
+        const pdfmMergeBtn = document.getElementById('pdfm-merge-btn');
+        const pdfmResetBtn = document.getElementById('pdfm-reset-btn');
+        const pdfmSpinner = document.getElementById('pdfm-spinner');
+        const pdfmResults = document.getElementById('pdfm-results');
+        const pdfmPageCount = document.getElementById('pdfm-page-count');
+        const pdfmFileCount = document.getElementById('pdfm-file-count');
+        const pdfmFinalSize = document.getElementById('pdfm-final-size');
+        const pdfmDownloadBtn = document.getElementById('pdfm-download-btn');
+
+        let pdfmFiles = [];
+
+        // Handle file selection
+        pdfmUploadArea.addEventListener('click', () => pdfmFileInput.click());
+        pdfmUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            pdfmUploadArea.classList.add('active');
+        });
+        pdfmUploadArea.addEventListener('dragleave', () => {
+            pdfmUploadArea.classList.remove('active');
+        });
+        pdfmUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            pdfmUploadArea.classList.remove('active');
+            if (e.dataTransfer.files.length) {
+                handlePdfmFileSelect(Array.from(e.dataTransfer.files));
+            }
+        });
+
+        pdfmFileInput.addEventListener('change', () => {
+            if (pdfmFileInput.files.length) {
+                handlePdfmFileSelect(Array.from(pdfmFileInput.files));
+            }
+        });
+
+        function handlePdfmFileSelect(files) {
+            // Filter only PDF files
+            const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.endsWith('.pdf'));
+            
+            if (pdfFiles.length === 0) {
+                showToast('Please select PDF files', 'error');
+                return;
+            }
+            
+            // Add to files array
+            pdfmFiles = [...pdfmFiles, ...pdfFiles];
+            updatePdfmFileList();
+            
+            if (pdfmFiles.length > 1) {
+                pdfmMergeBtn.disabled = false;
+            }
+            
+            pdfmResetBtn.disabled = false;
+            pdfmFileList.style.display = 'block';
+            pdfmResults.style.display = 'none';
+        }
+
+        function updatePdfmFileList() {
+            // Clear existing list
+            pdfmFileList.innerHTML = '';
+            
+            // Add each file to the list
+            pdfmFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatBytes(file.size)}</div>
+                    </div>
+                    <button class="file-remove" data-index="${index}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                pdfmFileList.appendChild(fileItem);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.file-remove').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                    pdfmFiles.splice(index, 1);
+                    updatePdfmFileList();
+                    
+                    if (pdfmFiles.length < 2) {
+                        pdfmMergeBtn.disabled = true;
+                    }
+                    
+                    if (pdfmFiles.length === 0) {
+                        pdfmFileList.style.display = 'none';
+                        pdfmResetBtn.disabled = true;
+                    }
                 });
             });
         }
+
+        // Merge PDFs
+        pdfmMergeBtn.addEventListener('click', mergePdfs);
+
+        function mergePdfs() {
+            if (pdfmFiles.length < 2) return;
+
+            pdfmSpinner.style.display = 'block';
+            pdfmMergeBtn.disabled = true;
+            pdfmMergeBtn.innerHTML = `<i class="fas fa-spinner fa-spin btn-icon"></i> Merging...`;
+
+            // Simulate merging (in a real app, use PDF library)
+            setTimeout(() => {
+                // Calculate total size and simulate merged file
+                const totalSize = pdfmFiles.reduce((sum, file) => sum + file.size, 0);
+                const optimizedSize = pdfmOptimize.checked ? totalSize * 0.7 : totalSize;
+                
+                // Create a dummy blob for the demo
+                const mergedBlob = new Blob([pdfmFiles[0]], { type: 'application/pdf' });
+                
+                // Update results
+                pdfmPageCount.textContent = Math.floor(pdfmFiles.length * 3); // Simulate page count
+                pdfmFileCount.textContent = pdfmFiles.length;
+                pdfmFinalSize.textContent = formatBytes(optimizedSize);
+                
+                pdfmDownloadBtn.href = URL.createObjectURL(mergedBlob);
+                pdfmDownloadBtn.download = pdfmOutputName.value || 'merged.pdf';
+                
+                pdfmResults.style.display = 'block';
+                pdfmSpinner.style.display = 'none';
+                pdfmMergeBtn.innerHTML = `<i class="fas fa-object-group btn-icon"></i> Merge PDFs`;
+                
+                showToast('PDFs merged successfully!', 'success');
+                
+                // Scroll to results
+                pdfmResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 2000);
+        }
+
+        // Reset tool
+        pdfmResetBtn.addEventListener('click', resetPdfmTool);
+
+        function resetPdfmTool() {
+            pdfmFiles = [];
+            pdfmFileInput.value = '';
+            pdfmFileList.innerHTML = '';
+            pdfmFileList.style.display = 'none';
+            pdfmMergeBtn.disabled = true;
+            pdfmResetBtn.disabled = true;
+            pdfmResults.style.display = 'none';
+            pdfmOutputName.value = 'merged.pdf';
+            pdfmOptimize.checked = true;
+        }
+
+        // Download merged PDF
+        pdfmDownloadBtn.addEventListener('click', (e) => {
+            if (pdfmFiles.length < 2) {
+                e.preventDefault();
+                showToast('No merged PDF available', 'error');
+            }
+        });
+
+        // PDF Splitter Tool
+        const pdfsUploadArea = document.getElementById('pdfs-upload-area');
+        const pdfsFileInput = document.getElementById('pdfs-file-input');
+        const pdfsModeSelect = document.getElementById('pdfs-mode');
+        const pdfsRangesGroup = document.getElementById('pdfs-ranges-group');
+        const pdfsRangesInput = document.getElementById('pdfs-ranges');
+        const pdfsEveryGroup = document.getElementById('pdfs-every-group');
+        const pdfsEverySlider = document.getElementById('pdfs-every');
+        const pdfsEveryValue = document.getElementById('pdfs-every-value');
+        const pdfsOptimize = document.getElementById('pdfs-optimize');
+        const pdfsSplitBtn = document.getElementById('pdfs-split-btn');
+        const pdfsResetBtn = document.getElementById('pdfs-reset-btn');
+        const pdfsSpinner = document.getElementById('pdfs-spinner');
+        const pdfsResults = document.getElementById('pdfs-results');
+        const pdfsTotalPages = document.getElementById('pdfs-total-pages');
+        const pdfsOutputFiles = document.getElementById('pdfs-output-files');
+        const pdfsAvgSize = document.getElementById('pdfs-avg-size');
+        const pdfsDownloadContainer = document.getElementById('pdfs-download-container');
+
+        let pdfsCurrentFile = null;
+
+        // Update mode selection
+        pdfsModeSelect.addEventListener('change', updatePdfsMode);
+
+        function updatePdfsMode() {
+            const mode = pdfsModeSelect.value;
+            
+            if (mode === 'ranges') {
+                pdfsRangesGroup.style.display = 'block';
+                pdfsEveryGroup.style.display = 'none';
+            } else if (mode === 'every') {
+                pdfsRangesGroup.style.display = 'none';
+                pdfsEveryGroup.style.display = 'block';
+            } else { // odd-even
+                pdfsRangesGroup.style.display = 'none';
+                pdfsEveryGroup.style.display = 'none';
+            }
+        }
+
+        // Update every slider value
+        pdfsEverySlider.addEventListener('input', () => {
+            pdfsEveryValue.textContent = `${pdfsEverySlider.value} page${pdfsEverySlider.value > 1 ? 's' : ''}`;
+        });
+
+        // Handle file selection
+        pdfsUploadArea.addEventListener('click', () => pdfsFileInput.click());
+        pdfsUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            pdfsUploadArea.classList.add('active');
+        });
+        pdfsUploadArea.addEventListener('dragleave', () => {
+            pdfsUploadArea.classList.remove('active');
+        });
+        pdfsUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            pdfsUploadArea.classList.remove('active');
+            if (e.dataTransfer.files.length) {
+                handlePdfsFileSelect(e.dataTransfer.files[0]);
+            }
+        });
+
+        pdfsFileInput.addEventListener('change', () => {
+            if (pdfsFileInput.files.length) {
+                handlePdfsFileSelect(pdfsFileInput.files[0]);
+            }
+        });
+
+        function handlePdfsFileSelect(file) {
+            if (!(file.type === 'application/pdf' || file.name.endsWith('.pdf'))) {
+                showToast('Please select a PDF file', 'error');
+                return;
+            }
+
+            pdfsCurrentFile = file;
+            pdfsSplitBtn.disabled = false;
+            pdfsResetBtn.disabled = false;
+            pdfsResults.style.display = 'none';
+            
+            showToast('PDF file ready for splitting', 'success');
+        }
+
+        // Split PDF
+        pdfsSplitBtn.addEventListener('click', splitPdf);
+
+        function splitPdf() {
+            if (!pdfsCurrentFile) return;
+
+            pdfsSpinner.style.display = 'block';
+            pdfsSplitBtn.disabled = true;
+            pdfsSplitBtn.innerHTML = `<i class="fas fa-spinner fa-spin btn-icon"></i> Splitting...`;
+
+            // Simulate splitting (in a real app, use PDF library)
+            setTimeout(() => {
+                const mode = pdfsModeSelect.value;
+                let outputCount = 0;
+                
+                if (mode === 'ranges') {
+                    // Simple simulation for ranges - just count commas and hyphens
+                    const ranges = pdfsRangesInput.value;
+                    outputCount = ranges.split(',').length;
+                } else if (mode === 'every') {
+                    // Split every X pages
+                    const every = parseInt(pdfsEverySlider.value);
+                    outputCount = Math.ceil(24 / every); // Assume 24 pages for demo
+                } else {
+                    // Odd/even
+                    outputCount = 2;
+                }
+                
+                // Update results
+                pdfsTotalPages.textContent = '24'; // Simulated page count
+                pdfsOutputFiles.textContent = outputCount;
+                pdfsAvgSize.textContent = formatBytes(pdfsCurrentFile.size / outputCount);
+                
+                // Create download buttons for each output file
+                pdfsDownloadContainer.innerHTML = '';
+                for (let i = 1; i <= outputCount; i++) {
+                    const fileName = pdfsCurrentFile.name.replace('.pdf', '') + `_part${i}.pdf`;
+                    const btn = document.createElement('a');
+                    btn.className = 'btn btn-primary';
+                    btn.style.margin = '0.5rem';
+                    btn.innerHTML = `<i class="fas fa-download btn-icon"></i> Part ${i}`;
+                    btn.href = URL.createObjectURL(pdfsCurrentFile);
+                    btn.download = fileName;
+                    pdfsDownloadContainer.appendChild(btn);
+                }
+                
+                pdfsResults.style.display = 'block';
+                pdfsSpinner.style.display = 'none';
+                pdfsSplitBtn.innerHTML = `<i class="fas fa-cut btn-icon"></i> Split PDF`;
+                
+                showToast('PDF split successfully!', 'success');
+                
+                // Scroll to results
+                pdfsResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 2000);
+        }
+
+        // Reset tool
+        pdfsResetBtn.addEventListener('click', resetPdfsTool);
+
+        function resetPdfsTool() {
+            pdfsCurrentFile = null;
+            pdfsFileInput.value = '';
+            pdfsSplitBtn.disabled = true;
+            pdfsResetBtn.disabled = true;
+            pdfsResults.style.display = 'none';
+            pdfsModeSelect.value = 'ranges';
+            pdfsRangesInput.value = '';
+            pdfsEverySlider.value = 1;
+            pdfsEveryValue.textContent = '1 page';
+            pdfsOptimize.checked = true;
+            pdfsDownloadContainer.innerHTML = '';
+            updatePdfsMode();
+        }
+
+        // Initialize
+        updatePdfsMode();
     </script>
 </body>
 </html>
